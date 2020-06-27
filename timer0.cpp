@@ -272,6 +272,7 @@ void timer0(void)
    if (((long_time_state & 0x01) != 0) && (timer_state == 0))  
                               // every other long time, every 51.2 ms
    {
+		 //every 500ms cylce the LED
 		 led_timer++;
 		 if(led_timer >= 10)
 		 {

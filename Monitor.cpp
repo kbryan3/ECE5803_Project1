@@ -73,18 +73,41 @@ void set_display_mode(void)
 }
 
 /*******************************************************************************
-. 
+/ user generated functions
 *******************************************************************************/
+
+/***************************************************
+/@description gets the values in the ARM registers
+/
+/@param uint32_t pointer that will be filled with the register values
+/
+***************************************************/
 __asm void get_registers(uint32_t * p_arm_registers);
 
     
-
+/***************************************************
+/@description gets the values in the ARM registers
+/
+/@param uint32_t pointer that will be filled with the register values
+/
+***************************************************/
 char getNumber(int n);
+
+/***************************************************
+/@description 
+/
+/@param 
+/
+***************************************************/
 void itoa(uint32_t n, char * s, uint32_t base_n);
 void reverse(char *s);
+
+/***************************************************
+/@description prints out the top 16 values on the stack
+/
+***************************************************/
 void printStackValues();
 
-uint32_t hex2int(char *hex);
 
 
 //*****************************************************************************/
@@ -225,7 +248,7 @@ void UART_msg_process(void)
            display_flag = 0;
 					 UART_msg_put("\r\nSelect:   ");
 				   break;
-				
+				//command to read the stack values
 				case 'S':
 				  printStackValues();
 				  display_flag = 0;
@@ -464,20 +487,4 @@ void reverse(char *s)
         *s++ = *j;
         *j-- = c;
     }
-}
-
-uint32_t hex2int(char *hex) 
-{
-    uint32_t val = 0;
-    while (*hex) {
-        // get current character then increment
-        uint8_t byte = *hex++; 
-        // transform hex character to the 4bit equivalent number, using the ascii table indexes
-        if (byte >= '0' && byte <= '9') byte = byte - '0';
-        else if (byte >= 'a' && byte <='f') byte = byte - 'a' + 10;
-        else if (byte >= 'A' && byte <='F') byte = byte - 'A' + 10;    
-        // shift 4 to make space for new digit, and add the 4 bits of the new digit 
-        val = (val << 4) | (byte & 0xF);
-    }
-    return val;
 }
