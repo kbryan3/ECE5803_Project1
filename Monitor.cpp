@@ -62,6 +62,7 @@ void set_display_mode(void)
   UART_direct_msg_put("\r\n*  Hit DEB - Debug                                             *");
   UART_direct_msg_put("\r\n*  Hit V - Version#                                            *");
 	UART_direct_msg_put("\r\n*  HIT R - View Registers                                      *");
+	UART_direct_msg_put("\r\n*  HIT S - View Stack                                          *");
   UART_direct_msg_put("\r\n*  Enter a Hex Address(e.g 0xdeadbeef) to see its value        *");
 	UART_direct_msg_put("\r\n****************************************************************\r\n");
 	
@@ -81,6 +82,7 @@ __asm void get_registers(uint32_t * p_arm_registers);
 char getNumber(int n);
 void itoa(uint32_t n, char * s, uint32_t base_n);
 void reverse(char *s);
+void printStackValues();
 
 uint32_t hex2int(char *hex);
 
@@ -165,7 +167,7 @@ void UART_msg_process(void)
                UART_msg_put("\r\nMode=DEBUG\n");
                display_timer = 0;
             }
-            elseR
+            else
                err = 1;
             break;
 
@@ -198,7 +200,7 @@ void UART_msg_process(void)
 				    UART_msg_put("\r\nSelect:   ");
             display_timer = 0;
             break;
-			  
+			  //Command to Read Register Values
 				 case 'R':
 					 display_mode = VERSION;
 				   uint32_t * reg = (uint32_t*)malloc(16 * sizeof(uint32_t));
@@ -223,7 +225,13 @@ void UART_msg_process(void)
            display_flag = 0;
 					 UART_msg_put("\r\nSelect:   ");
 				   break;
-        
+				
+				case 'S':
+				  printStackValues();
+				  display_flag = 0;
+				  UART_msg_put("\r\nSelect:   ");
+				  break;
+        //Command to read memory
         case '0':
           if(msg_buf_idx == 10)
           {
@@ -352,6 +360,7 @@ void monitor(void)
                UART_msg_put(" Freq: ");
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
+							display_flag = 0;
 						}  
                
  /****************      ECEN 5803 add code as indicated   ***************/             
@@ -400,6 +409,22 @@ __asm void get_registers(uint32_t * p_arm_registers)
       MOV r1, r15
       STR r1, [r0, #60]
       POP {r1-r7, pc}
+}
+
+void printStackValues()
+{
+    
+	  char buffer[10];
+	  uint32_t var;
+	  var =4;
+	  uint32_t i;
+	  i = 1;
+	  while(i <17)
+		{
+			sprintf( buffer, "\r\n%x", *(&var + i));
+			UART_direct_msg_put(buffer);
+			i++;
+		}
 }
 
     

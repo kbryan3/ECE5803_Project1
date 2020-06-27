@@ -51,19 +51,19 @@ Serial pc(USBTX, USBRX);
  
 void flip()  
 {                
-    greenLED = !greenLED;
+    redLED = !redLED;
 }
  
 int main() 
 {
 /****************      ECEN 5803 add code as indicated   ***************/
                     //  Add code to call timer0 function every 100 uS
-    tick.attach(&timer0, 0.0001);
-    greenLED=0;
-    redLED=0;
-    blueLED=0;
-    pc.printf("Hello World!\n"); 
-    uint32_t  count = 0;   
+   greenLED=!greenLED;
+	 redLED=!redLED;
+   blueLED=!blueLED;  
+	 tick.attach(&timer0, 0.0001);
+   pc.printf("Hello World!\n"); 
+   uint32_t  count = 0;   
     
 // initialize serial buffer pointers
    rx_in_ptr =  rx_buf; /* pointer to the receive in data */
