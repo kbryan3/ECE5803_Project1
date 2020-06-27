@@ -110,6 +110,10 @@ extern "C" {
    static   UCHAR long_time_state = 0; 
        //  variable which splits timer_states into groups
       //  tasks are run in their assigned group times
+	 static uint16_t led_timer = 0;	
+  DigitalOut redLED(LED_RED);
+  //DigitalOut greenLED(LED_GREEN);
+  //DigitalOut blueLED(LED_BLUE);
 //    DigitalOut BugMe (PTB9);   // debugging information out on PTB9      
 #ifdef __cplusplus
 }
@@ -268,6 +272,12 @@ void timer0(void)
    if (((long_time_state & 0x01) != 0) && (timer_state == 0))  
                               // every other long time, every 51.2 ms
    {
+		 led_timer++;
+		 if(led_timer >= 10)
+		 {
+		   redLED = !redLED;
+			 led_timer = 0;
+		 }
 // X.   Long time group
 //
 //  clear_watchdog_timer();

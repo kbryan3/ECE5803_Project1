@@ -41,9 +41,6 @@ extern volatile uint16_t SwTimerIsrCounter;
 Ticker tick;             //  Creates a timer interrupt using mbed methods
  /****************      ECEN 5803 add code as indicated   ***************/
                 // Add code to control red, green and blue LEDs here
-DigitalOut redLED(LED_RED);
-DigitalOut greenLED(LED_GREEN);
-DigitalOut blueLED(LED_BLUE);
 
 
 
@@ -51,16 +48,13 @@ Serial pc(USBTX, USBRX);
  
 void flip()  
 {                
-    redLED = !redLED;
+    //redLED = !redLED;
 }
  
 int main() 
 {
 /****************      ECEN 5803 add code as indicated   ***************/
-                    //  Add code to call timer0 function every 100 uS
-   greenLED=!greenLED;
-	 redLED=!redLED;
-   blueLED=!blueLED;  
+                    //  Add code to call timer0 function every 100 uS 
 	 tick.attach(&timer0, 0.0001);
    pc.printf("Hello World!\n"); 
    uint32_t  count = 0;   
@@ -107,7 +101,7 @@ int main()
         if ((SwTimerIsrCounter & 0x1FFF) > 0x0FFF)
     
         {
-            flip();  // Toggle Green LED
+            //flip();  // Toggle Green LED
         }
    
     } 
