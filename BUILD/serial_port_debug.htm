@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\BUILD\serial_port_debug.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\BUILD\serial_port_debug.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jun 29 16:45:45 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jun 29 17:12:17 2020
 <BR><P>
 <H3>Maximum Stack Usage =        704 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -520,7 +520,7 @@ Global Symbols
 
 <P><STRONG><a name="[198]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, C:\Keil_v5\ARM\ARMCC\Bin\..\lib\armlib\c_p.l(__rtentry2.o)(.ARM.Collect$$rtentry$$0000000C))
 
-<P><STRONG><a name="[111]"></a>get_registers(unsigned*)</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, .\build\monitor.o(.emb_text))
+<P><STRONG><a name="[112]"></a>get_registers(unsigned*)</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, .\build\monitor.o(.emb_text))
 <BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_msg_process
 </UL>
 
@@ -1588,7 +1588,7 @@ Global Symbols
 <P><STRONG><a name="[39]"></a>SystemInit</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, mbed/TARGET_KL25Z/TOOLCHAIN_ARM_STD/system_MKL25Z4.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_MKL25Z4.o(.text)
 </UL>
-<P><STRONG><a name="[112]"></a>UART_direct_msg_put</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, .\build\uart_poll.o(i.UART_direct_msg_put))
+<P><STRONG><a name="[111]"></a>UART_direct_msg_put</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, .\build\uart_poll.o(i.UART_direct_msg_put))
 <BR><BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printStackValues()
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_msg_process
@@ -1609,8 +1609,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_msg_put
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printStackValues()
-<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_registers(unsigned*)
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_registers(unsigned*)
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strtol
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
@@ -1631,7 +1631,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = printStackValues() &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_msg_process
@@ -2386,7 +2386,7 @@ Global Symbols
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;monitor
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chk_UART_msg
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Callback&lang;void()&rang;::~Callback()
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2ulz
@@ -2627,7 +2627,7 @@ Global Symbols
 <P><STRONG><a name="[16b]"></a>set_display_mode</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, .\build\monitor.o(i.set_display_mode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = set_display_mode
 </UL>
-<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_direct_msg_put
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>

@@ -157,9 +157,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>428</LineNumber>
+          <LineNumber>191</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>11942</Address>
+          <Address>11294</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -168,7 +168,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>Monitor.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\serial_port_debug\Monitor.cpp\428</Expression>
+          <Expression>\\serial_port_debug\Monitor.cpp\191</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

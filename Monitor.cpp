@@ -191,7 +191,7 @@ void UART_msg_process(void)
             if((msg_buf[1] == 'U') && (msg_buf[2] == 'I') && (msg_buf_idx == 3)) 
             {
                display_mode = QUIET;
-               UART_msg_put("\r\nMode=QUIET\n");
+               UART_direct_msg_put("\r\nMode=QUIET\n");
                display_timer = 0;
             }
             else
@@ -237,12 +237,6 @@ void UART_msg_process(void)
               char buffer[50];
 						  sprintf(word, "%s\n\r", msg_buf+2);
               long it1 = strtol(word, 0, 16);
-						  /*if(*(char *)it1 == NULL)
-							{
-								UART_direct_msg_put("ERROR: Nothing at memory address");
-								display_timer=0;
-								break;
-							}*/
               char * val = (char *)it1;
 						  sprintf(buffer,"\n\rAddress: 0x%p Data:0x%x%x%x%x\n\r", val,*val, *(val+1), *(val+2), *(val+3) );
               UART_direct_msg_put(buffer);
@@ -422,7 +416,7 @@ void printStackValues()
 	uint16_t i;
 	for(i = 0; i <16; i++)
 	{
-		sprintf(buffer,"\n\r%p    %#x", (p+i), p[i]);
+		sprintf(buffer,"Address: \n\r%p    Value:%#x", (p+i), p[i]);
 		UART_direct_msg_put(buffer);
 	}
 }
