@@ -31,7 +31,6 @@
 #include <stdio.h>
 #include "shared.h"
 
-
 /*******************************************************************************
 * Set Display Mode Function
 * Function determines the correct display mode.  The 3 display modes operate as 
@@ -84,23 +83,6 @@ void set_display_mode(void)
 ***************************************************/
 __asm void get_registers(uint32_t * p_arm_registers);
 
-    
-/***************************************************
-/@description gets the values in the ARM registers
-/
-/@param uint32_t pointer that will be filled with the register values
-/
-***************************************************/
-char getNumber(int n);
-
-/***************************************************
-/@description 
-/
-/@param 
-/
-***************************************************/
-void itoa(uint32_t n, char * s, uint32_t base_n);
-void reverse(char *s);
 
 /***************************************************
 /@description prints out the top 16 values on the stack
@@ -226,24 +208,17 @@ void UART_msg_process(void)
 			  //Command to Read Register Values
 				 case 'R':
 					 display_mode = VERSION;
-				   uint32_t * reg = (uint32_t*)malloc(16 * sizeof(uint32_t));
+				   uint32_t reg[16];
            get_registers(reg);
            uint32_t i=0;
-           char * word = (char*)malloc(4 * sizeof(char));
+				   char buffer[50];
            while(i < 16)
            {
-                   
-               itoa(i,word,10);
-               UART_direct_msg_put("\r\nRegister ");
-               UART_direct_msg_put(word);
-               UART_direct_msg_put(": ");
-               itoa(reg[i],word,16);
-               UART_direct_msg_put(word);
+               sprintf(buffer, "\r\nRegister %d: %#x", i, reg[i]);    
+               UART_direct_msg_put(buffer);
                i++;
            }
            i=0;
-           free(reg);
-           free(word);
            // clear flag to ISR      
            display_flag = 0;
 					 UART_msg_put("\r\nSelect:   ");
@@ -433,58 +408,21 @@ __asm void get_registers(uint32_t * p_arm_registers)
       STR r1, [r0, #60]
       POP {r1-r7, pc}
 }
-
 void printStackValues()
 {
     
-	  char buffer[10];
-	  uint32_t var;
-	  var =4;
-	  uint32_t i;
-	  i = 1;
-	  while(i <17)
-		{
-			sprintf( buffer, "\r\n%x", *(&var + i));
-			UART_direct_msg_put(buffer);
-			i++;
-		}
-}
-
-    
-
-char getNumber(uint32_t n){
-  if(n>9) {
-    return n-10+'a';
-  } else {
-    return n+'0';
-  }
-}
- void itoa(uint32_t n, char * s, uint32_t base_n)
- {
-     uint32_t i, sign;
- 
-     if ((sign = n) < 0)  /* record sign */
-         n = -n;          /* make n positive */
-     i = 0;
-     do {       /* generate digits in reverse order */
-         s[i++] = getNumber(n % base_n);   /* get next digit */
-     } while ((n /= base_n) > 0);     /* delete it */
-     if (sign < 0)
-         s[i++] = '-';
-     s[i] = '\0';
-     reverse(s);
- }
- 
-void reverse(char *s) 
-{
-    char *j;
-    int c;
- 
-    j = s + strlen(s) - 1;
-    while(s < j) 
-    {
-        c = *s;
-        *s++ = *j;
-        *j-- = c;
-    }
+	uint32_t spReg;
+	uint32_t *p;
+	__asm
+	{
+		MOV spReg, __current_sp()
+	}
+	p = (uint32_t*)spReg;
+	char buffer[50];
+	uint16_t i;
+	for(i = 0; i <16; i++)
+	{
+		sprintf(buffer,"\n\r%p    %#x", (p+i), p[i]);
+		UART_direct_msg_put(buffer);
+	}
 }

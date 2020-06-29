@@ -121,7 +121,7 @@ extern "C" {
    extern volatile     UCHAR swtimer4;    
    extern volatile     UCHAR swtimer5;    
    extern volatile     UCHAR swtimer6;    
-   extern volatile     UCHAR swtimer7;    
+   extern volatile     UCHAR swtimer7; 
 	 
 
   

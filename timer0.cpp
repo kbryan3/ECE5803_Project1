@@ -104,8 +104,8 @@ extern "C" {
  
    static   uint32_t System_Timer_count = 0; // 32 bits, counts for 
                                                   // 119 hours at 100 us period
-   static   uint16_t timer0_count = 0; // 16 bits, counts for 
-                                          // 6.5 seconds at 100 us period                                                  
+   extern   uint16_t timer0_count = 0; // 16 bits, counts for 
+                                          // 6.5 seconds at 100 us period   																					
    static   UCHAR timer_state = 0;   
    static   UCHAR long_time_state = 0; 
        //  variable which splits timer_states into groups
