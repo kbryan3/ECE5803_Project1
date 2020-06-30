@@ -416,7 +416,7 @@ void printStackValues()
 	uint16_t i;
 	for(i = 0; i <16; i++)
 	{
-		sprintf(buffer,"Address: \n\r%p    Value:%#x", (p+i), p[i]);
+		sprintf(buffer,"\n\rAddress: %p    Value:%#x", (p+i), p[i]);
 		UART_direct_msg_put(buffer);
 	}
 }
