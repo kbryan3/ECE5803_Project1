@@ -12,10 +12,10 @@
 --               
 --                
 --  Designed by:  Tim Scherr
---  Revised by:  Kyle Bryan 
+--  Revised by:  Kyle Bryan, Daniel Fairbanks and Shawn Thompson 
 -- 
 -- Version: 2.08
--- Date of current revision:  2016-09-29   
+-- Date of current revision:  2020-07-02  
 -- Target Microcontroller: Freescale MKL25ZVMT4 
 -- Tools used:  ARM mbed compiler
 --              ARM mbed SDK
@@ -236,8 +236,15 @@ void UART_msg_process(void)
               char word[4];
               char buffer[50];
 						  sprintf(word, "%s\n\r", msg_buf+2);
-              long it1 = strtol(word, 0, 16);
-              char * val = (char *)it1;
+              long itl = strtol(word, 0, 16);
+					    if(itl < 0x1ffff000 || itl > 0x20002ffc)
+							{
+								UART_direct_msg_put("\r\nInvalid Address try between 0x1ffff000 and 0x20002ffc");
+								UART_msg_put("\r\nSelect:   ");
+								err = 1;
+								break;
+							}
+              char * val = (char *)itl;
 						  sprintf(buffer,"\n\rAddress: 0x%p Data:0x%x%x%x%x\n\r", val,*val, *(val+1), *(val+2), *(val+3) );
               UART_direct_msg_put(buffer);
               display_timer = 0;
@@ -357,13 +364,15 @@ void monitor(void)
                
  /****************      ECEN 5803 add code as indicated   ***************/             
                //  Create a display of  error counts, sensor states, and
-               //  ARM Registers R0-R15
+               //  ARM Registers R0-R15(see command switch statement)
                
                //  Create a command to read a section of Memory and display it
+						   //  (see command switch statement)
                
                
                //  Create a command to read 16 words from the current stack 
-               // and display it in reverse chronological order       
+               // and display it in reverse chronological order
+               // (see command switch statement)						
          }  
          break;
       default:

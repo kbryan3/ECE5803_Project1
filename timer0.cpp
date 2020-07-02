@@ -13,7 +13,7 @@
 --                
 --                
 --  Designed by:  Tim Scherr
---  Revised by:  Student's name 
+--  Revised by:  Kyle Bryan, Daniel Fairbanks and Shawn Thompson
 -- 
 -- Version: 2.0
 -- Date of current revision:  2016-09-29   
@@ -126,7 +126,7 @@ extern "C" {
 
 void timer0(void)
  {
- 
+	
  //  BugMe = 1;  // debugging signal high during Timer0 interrupt on PTB9
    
 /************************************************/    

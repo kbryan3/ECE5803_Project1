@@ -14,10 +14,10 @@
 --               
 --                
 --  Designed by:  Tim Scherr
---  Revised by:  Student's name 
+--  Revised by:   Kyle Bryan, Daniel Fairbanks and Shawn Thompson
 -- 
 -- Version: 2.1
--- Date of current revision:  2017-09-20  
+-- Date of current revision:  2020-07-02
 -- Target Microcontroller: Freescale MKL25ZVMT4 
 -- Tools used:  ARM mbed compiler
 --              ARM mbed SDK
@@ -36,6 +36,7 @@
 #undef MAIN
 
 extern volatile uint16_t SwTimerIsrCounter; 
+uint32_t systickCounter = 0;
 
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
